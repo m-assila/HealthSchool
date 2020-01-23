@@ -7,36 +7,38 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.Federateur.Beans.Doctor;
+import com.Federateur.Beans.Student;
 import com.Federateur.Beans.UserDTO;
 import com.Federateur.Repositories.DoctorRepository;
-
+import com.Federateur.Repositories.StudentRepository;
 
 import lombok.Getter;
 import lombok.Setter;
 @Service
-public class DoctorServiceImpl implements DoctorService {
-	
+public class StudentServiceImpl implements StudentService {
+
 	@Autowired
 	@Getter
 	@Setter
-	private DoctorRepository repository;
+	private StudentRepository repository;
 	
 	
 	
 	@Override
-	public void saveDoctor(Doctor doc) {
-		Doctor d=repository.findDoctorByEmail(doc.getEmail());
+	public void saveStudent(Student t) {
+		Student d=repository.findStudentByEmail(t.getEmail());
 		if(d==null) {
-			 repository.save(doc);
+			 repository.save(t);
 		}
 		else {
 			System.out.println("The doctor already exists");
 		}
-		
+
 	}
+
 	@Override
-	public String logDoctor(UserDTO t) {
-		Doctor d=repository.findDoctorByEmail(t.getEmail());
+	public String logStudent(UserDTO t) {
+		Student d=repository.findStudentByEmail(t.getEmail());
 		if(d==null) {
 			 System.out.println("This account email doesn't exists !!");
 			 return "case1";
@@ -52,21 +54,19 @@ public class DoctorServiceImpl implements DoctorService {
 	}
 
 	@Override
-	public void deleteDoctorById(Long id) {
+	public void deleteStudentById(Long id) {
 		repository.deleteById(id);
 
 	}
 
 	@Override
-	public Optional<Doctor> getDoctorById(Long id) {
+	public Optional<Student> getStudentById(Long id) {
 		return repository.findById(id);
 	}
 
 	@Override
-	public List<Doctor> getAllDoctors() {
+	public List<Student> getAllStudents() {
 		return repository.findAll();
 	}
-
-	
 
 }

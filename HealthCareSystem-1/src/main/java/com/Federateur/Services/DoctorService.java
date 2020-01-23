@@ -11,7 +11,7 @@ import com.Federateur.Beans.UserDTO;
 public interface DoctorService {
 	
 	void saveDoctor(Doctor t);
-	Boolean logDoctor(UserDTO t);
+	String logDoctor(UserDTO t);
 	public void deleteDoctorById(Long id);
 	Optional<Doctor> getDoctorById(Long id);
 	List<Doctor> getAllDoctors();
